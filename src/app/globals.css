@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: #FAFAF8;
+  --color-surface-warm: #F5F4F0;
+  --color-ink: #1C1C1E;
+  --color-ink-muted: #8E8E93;
+  --color-ink-faint: #C7C7CC;
+  --color-indigo: #4F46E5;
+  --color-teal: #0D9488;
+  --color-amber: #D97706;
+  --color-rose: #BE185D;
+  --color-danger: #DC2626;
+  --color-separator: rgba(0, 0, 0, 0.06);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-instrument-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Scrollbar — invisible but functional */
+.custom-scroll::-webkit-scrollbar {
+  width: 0;
+}
+.custom-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Checkbox — monochrome with micro-animation */
+.task-check {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--color-ink-faint);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  position: relative;
+  background: transparent;
+}
+.task-check:checked {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  animation: check-pop 0.15s ease-out;
+}
+.task-check:checked::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+@keyframes check-pop {
+  0% { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+/* Progress bar — warm accent */
+.progress-bar {
+  height: 2px;
+  background: var(--color-teal);
+  transition: width 0.3s ease;
+}
+
+/* Strikethrough animation */
+.task-text-completed {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-ink-faint);
+  text-decoration-thickness: 1px;
+}
+
+/* Inline add input focus accent */
+.add-input-wrap {
+  position: relative;
+}
+.add-input-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent-underline, var(--color-teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+.add-input-wrap.is-focused::after {
+  transform: scaleX(1);
+}
+
+/* Category background wash — very subtle */
+.category-wash {
+  transition: background-color 0.3s ease;
+}
+
+/* Accent top line */
+.accent-top-line {
+  height: 2px;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
