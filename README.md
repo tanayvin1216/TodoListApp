@@ -1,20 +1,42 @@
-# Tasks
+<div align="center">
 
-A minimal, architecturally clean todo app — built in a single shot by a custom Claude agent system to prove that AI-generated interfaces don't have to look like AI-generated interfaces.
+# Tasks
+### Can AI ship interfaces with taste? This is the proof.
+
+<br/>
+
+[![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+
+<br/>
+
+**One-shot generation** · **Zero manual edits** · **Custom Claude agent system**
+
+<br/>
+
+![GitHub stars](https://img.shields.io/github/stars/tanayvin1216/TodoListApp?style=social)
+![GitHub forks](https://img.shields.io/github/forks/tanayvin1216/TodoListApp?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/tanayvin1216/TodoListApp?style=flat-square)
+
+</div>
 
 ---
 
 ## The Experiment
 
-Most AI-generated UIs share the same tell-tale DNA: purple-to-blue gradients, glassmorphism everywhere, pill-shaped buttons, hero sections with centered text, and enough glow effects to light a runway. It's become so predictable there's a term for it — **vibe-coded UI**.
+Most AI-generated UIs share the same DNA: purple-to-blue gradients, glassmorphism everywhere, pill-shaped buttons, hero sections with centered text, and enough glow effects to light a runway. It's so predictable there's a term for it — **vibe-coded UI**.
 
 This project is a direct challenge to that.
 
-I built a custom Claude Code agent system — a set of orchestration rules, design policies, quality gates, and routing logic — then pointed it at a blank Next.js 16 scaffold with one instruction:
+I built a custom Claude Code agent system — a layered architecture of design policies, orchestration rules, quality gates, and task routing — then pointed it at a blank Next.js 16 scaffold with one instruction:
 
-> Build a todo list app that a human designer would actually ship.
+> *Build a todo list app that a human designer would actually ship.*
 
-The entire app was generated in **one shot**. No manual code edits. No "fix this, try again" loops. The agent system handled planning, architecture, implementation, testing, and self-review autonomously.
+The entire application was generated in **one shot**. No manual code edits. No "fix this, try again" loops. The agent system handled planning, architecture, implementation, testing, and self-review autonomously.
 
 The result is a task manager that looks like it came from a design studio, not a chatbot.
 
@@ -22,62 +44,91 @@ The result is a task manager that looks like it came from a design studio, not a
 
 ## The Agent System
 
-The system behind this project isn't a single prompt. It's a layered architecture of rules and agents:
+The system behind this isn't a single prompt. It's a multi-layered architecture:
 
-**Design Policy** enforces a strict banned-patterns list (no gradient text, no glassmorphism, no over-rounded everything, no generic hero layouts) and requires every UI to declare a specific aesthetic direction. "Modern" is not an answer.
+| Layer | What It Does |
+|-------|-------------|
+| **Design Policy** | Enforces a banned-patterns list (no gradient text, no glassmorphism, no over-rounded everything) and requires a specific aesthetic direction. "Modern" is not an answer. |
+| **Task Routing** | Classifies work into 4 tiers (trivial → complex) and matches overhead to complexity. A button change doesn't get a standup. |
+| **Quality Gates** | Design guardian rejects vibe-coded output. Security rules block hardcoded secrets. Testing rules enforce TDD. |
+| **Coding Standards** | Strict TypeScript, immutability by default, 20-line function limits, no `any` types — ever. |
 
-**Task Routing** classifies work into tiers (trivial through complex) and matches overhead to complexity. A button change doesn't get a standup. A full feature gets the full cycle.
-
-**Quality Gates** include a design guardian that rejects vibe-coded output, security rules that block hardcoded secrets, and testing rules that enforce TDD.
-
-**Coding Standards** enforce strict TypeScript, immutability by default, 20-line function limits, and no `any` types — ever.
-
-The goal: make Claude produce work that passes the Steve Jobs test. Would he give a raise, or throw it back?
+The Steve Jobs test: *Would he give a raise, or throw it back?* If the answer is "this is generic" — iterate.
 
 ---
 
-## What Got Built
+## What It Does
 
-A task manager with an **architectural minimalist** aesthetic, inspired by Things 3 and Linear.
-
-### Design Decisions
-- **One continuous surface** — no cards, no sections, no dark hero. `#FAFAF8` warm off-white everywhere
-- **Monochrome-first** — color is used only for meaning (priority dots, category accents in nav), never for decoration
-- **DM Sans only** — one font family, three sizes (15px / 12px / 11px), weight differentiation instead of size inflation
-- **One animation** — delete exit slide. Everything else was cut. No entrance fades, no spring physics, no animated counters
-
-### UX Fixes Over Typical AI Output
 - **Inline task creation** — type and press Enter. No FAB, no modal, no bottom sheet
+- **Categories & priorities** — organize tasks across Personal, Work, Health, and Ideas with Low / Medium / Urgent priority levels
+- **Inline editing** — tap any task to edit in place. Enter to save, Escape to cancel
 - **Always-visible delete** — no hover-only interactions that break on touch devices
-- **Inline editing** — tap task text to edit in place. Enter to save, Escape to cancel
 - **Undo for destructive actions** — 5-second toast after clearing completed tasks
-- **Due dates** — native date input, relative time display ("2h", "Mar 23")
-
-### Architecture
-- **State**: `useReducer` with 7 discriminated union action types, localStorage persistence with schema migration
-- **Types**: Strict readonly interfaces, no `any`, derived constants
-- **Components**: 7 focused components, each under 170 lines, no inheritance
-- **Tests**: Vitest with pure function extraction — tests validate both logic and design constraints (regex checks that banned patterns are absent)
+- **Due dates** — native date input with relative time display ("2h", "Mar 23")
+- **Persistent storage** — localStorage with automatic schema migration
+- **Mobile-first** — 85% of viewport dedicated to tasks on a 375px screen
 
 ---
 
-## Tech Stack
+## Design Decisions
 
-| Layer | Choice |
-|-------|--------|
-| Framework | Next.js 16 (App Router) |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS 4 |
-| Animation | Framer Motion (delete exit only) |
-| Testing | Vitest |
-| State | useReducer + localStorage |
-| IDs | uuid v13 |
+**Aesthetic direction:** Architectural Minimalism — inspired by [Things 3](https://culturedcode.com/things/) and [Linear](https://linear.app/)
+
+| Decision | Why |
+|----------|-----|
+| One continuous `#FAFAF8` surface | No cards, no sections, no dark hero — tasks ARE the interface |
+| Monochrome-first palette | Color only for meaning (priority dots, category accents), never decoration |
+| DM Sans, three sizes only | 15px / 12px / 11px — weight differentiation replaces size inflation |
+| Single animation | Delete exit slide. Everything else was cut — no fades, no springs, no counters |
+| No card boundaries | You shouldn't be able to point at where components begin and end |
+
+### What Got Banned
+
+```
+Purple-to-blue gradients       Glassmorphism / blur effects
+Gradient text                  Pill-shaped buttons on everything
+Glow effects                   Hero-text-center-CTA layouts
+Hover-only interactions        Noise textures
+Animated stat counters         Spring physics on everything
+Stagger-in entrance fades      Sliding tab indicators
+```
+
+---
+
+## Architecture
+
+```
+src/
+├── app/
+│   ├── layout.tsx              Root layout, DM Sans font, metadata
+│   ├── page.tsx                Home route → TodoApp
+│   └── globals.css             Design tokens, checkbox, progress bar
+├── lib/
+│   ├── types.ts                Todo, Priority, Filter, Category (readonly, strict)
+│   └── hooks.ts                todoReducer (7 actions), useTodos, useRelativeTime
+└── components/
+    ├── TodoApp.tsx             Root composition, hydration guard, accent logic
+    ├── MinimalHeader.tsx       Date display, progress bar, add trigger
+    ├── UnifiedNav.tsx          Category + filter navigation in one row
+    ├── InlineAddTask.tsx       Expandable input with category/priority/date controls
+    ├── TaskRow.tsx             Checkbox, priority dot, inline edit, delete
+    ├── EmptyState.tsx          Contextual messages per filter state
+    └── UndoToast.tsx           5-second undo window after clear
+```
+
+**State management:** `useReducer` with 7 discriminated union action types — `HYDRATE`, `ADD`, `TOGGLE`, `DELETE`, `EDIT`, `CLEAR_COMPLETED`, `RESTORE_COMPLETED`
+
+**Persistence:** localStorage with hydration guard and `normalizeTodo()` for graceful schema migration
+
+**Testing:** Vitest with pure function extraction — tests validate both reducer logic and design constraints (regex pattern checks that banned styles are absent from source)
 
 ---
 
 ## Getting Started
 
 ```bash
+git clone https://github.com/tanayvin1216/TodoListApp.git
+cd TodoListApp
 npm install
 npm run dev
 ```
@@ -86,41 +137,33 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Scripts
 
-```bash
-npm run dev        # Development server
-npm run build      # Production build
-npm run lint       # ESLint
-npx vitest         # Run tests
-```
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run lint` | Run ESLint |
+| `npx vitest` | Run test suite |
 
 ---
 
-## Project Structure
+## Tech Stack
 
-```
-src/
-  app/
-    layout.tsx          # Root layout, fonts, metadata
-    page.tsx            # Home route
-    globals.css         # Design tokens, component styles
-  lib/
-    types.ts            # Todo, Priority, Filter, Category types
-    hooks.ts            # todoReducer, useTodos, useRelativeTime
-  components/
-    TodoApp.tsx         # Root composition, hydration, accent logic
-    MinimalHeader.tsx   # Date, progress bar, add button
-    UnifiedNav.tsx      # Category + filter navigation
-    InlineAddTask.tsx   # Expandable inline input with controls
-    TaskRow.tsx         # Task display, checkbox, inline edit
-    EmptyState.tsx      # Contextual empty messages
-    UndoToast.tsx       # Timed undo notification
-```
+| Layer | Choice | Version |
+|-------|--------|---------|
+| Framework | Next.js (App Router) | 16.2.1 |
+| UI | React | 19.2.4 |
+| Language | TypeScript (strict mode) | 5.x |
+| Styling | Tailwind CSS | 4.x |
+| Animation | Framer Motion | 12.x |
+| Testing | Vitest | 4.x |
+| State | useReducer + localStorage | — |
+| IDs | uuid | 13.x |
 
 ---
 
 ## The Point
 
-AI tools are going to generate more and more of the interfaces people use every day. The question isn't whether AI can write code — it's whether it can produce work with taste.
+AI tools are generating more and more of the interfaces people use every day. The question isn't whether AI can write code — it's whether it can produce work with **taste**.
 
 This project is evidence that with the right system around it, it can. The agent didn't need a human designer reviewing every pixel. It needed clear constraints, banned patterns, a defined aesthetic direction, and quality gates that reject mediocrity.
 
@@ -128,4 +171,22 @@ The code is the proof. Read it, run it, judge it.
 
 ---
 
-Built with a custom Claude Code agent system. Zero manual edits. One shot.
+## Contributing
+
+Bug reports, feature ideas, and PRs are welcome.
+
+---
+
+## Contact
+
+- **GitHub:** [@tanayvin1216](https://github.com/tanayvin1216)
+- **Email:** [Vinaykya27T@ncssm.edu](mailto:Vinaykya27T@ncssm.edu)
+- **Issues:** [Report a bug or request a feature](https://github.com/tanayvin1216/TodoListApp/issues)
+
+---
+
+<div align="center">
+
+Built with a custom Claude Code agent system · Zero manual edits · One shot
+
+</div>
