@@ -16,6 +16,7 @@
 
 **One-shot generation** · **Zero manual edits** · **Custom Claude agent system**
 
+
 <br/>
 
 ![GitHub stars](https://img.shields.io/github/stars/tanayvin1216/TodoListApp?style=social)
@@ -25,6 +26,8 @@
 </div>
 
 ---
+## Screenshot 
+<img width="400" height="500" alt="Screenshot 2026-03-23 at 11 34 51 PM" src="https://github.com/user-attachments/assets/ee5953ef-57d6-4c61-8e43-601d7479e47b" />
 
 ## The Experiment
 
