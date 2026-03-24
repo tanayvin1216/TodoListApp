@@ -37,7 +37,7 @@ This project is a direct challenge to that.
 
 I built a custom Claude Code agent system — a layered architecture of design policies, orchestration rules, quality gates, and task routing — then pointed it at a blank Next.js 16 scaffold with one instruction:
 
-> *Build a todo list app that a human designer would actually ship.*
+> *Build a todo list app that a human designer would actually ship. Make it super minimal and simple just need to see a non vibed AI app *
 
 The entire application was generated in **one shot**. No manual code edits. No "fix this, try again" loops. The agent system handled planning, architecture, implementation, testing, and self-review autonomously.
 
